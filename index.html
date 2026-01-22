@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Online Bookstore (MongoDB CRUD)</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; }
+    h1 { margin-bottom: 8px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+    .card { border: 1px solid #ddd; border-radius: 10px; padding: 14px; }
+    label { display: block; margin-top: 10px; font-size: 14px; }
+    input, select { width: 100%; padding: 8px; margin-top: 6px; }
+    button { margin-top: 12px; padding: 10px 12px; cursor: pointer; }
+    ul { padding-left: 18px; }
+    .muted { color: #666; font-size: 13px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    code { background: #f6f6f6; padding: 2px 4px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <h1>Online Bookstore</h1>
+  <p class="muted">Simple interface required by the assignment: view list + submit new data.</p>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Books</h2>
+      <p class="muted">API: <code>/api/books</code></p>
+
+      <form id="bookForm">
+        <div class="row">
+          <div>
+            <label>Title *</label>
+            <input id="bookTitle" required />
+          </div>
+          <div>
+            <label>Author *</label>
+            <input id="bookAuthor" required />
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label>Price (KZT) *</label>
+            <input id="bookPrice" type="number" min="0" step="0.01" required />
+          </div>
+          <div>
+            <label>Category *</label>
+            <input id="bookCategory" required />
+          </div>
+        </div>
+
+        <label>In stock</label>
+        <select id="bookInStock">
+          <option value="true" selected>Yes</option>
+          <option value="false">No</option>
+        </select>
+
+        <button type="submit">Add Book</button>
+      </form>
+
+      <h3>Book List</h3>
+      <ul id="booksList"></ul>
+    </div>
+
+    <div class="card">
+      <h2>Orders</h2>
+      <p class="muted">API: <code>/api/orders</code></p>
+
+      <form id="orderForm">
+        <label>Customer name *</label>
+        <input id="customerName" required />
+
+        <label>Customer email *</label>
+        <input id="customerEmail" type="email" required />
+
+        <div class="row">
+          <div>
+            <label>Book *</label>
+            <select id="orderBook" required></select>
+          </div>
+          <div>
+            <label>Quantity *</label>
+            <input id="orderQty" type="number" min="1" value="1" required />
+          </div>
+        </div>
+
+        <button type="submit">Create Order</button>
+      </form>
+
+      <h3>Order List</h3>
+      <ul id="ordersList"></ul>
+    </div>
+  </div>
+
+  <p class="muted" style="margin-top:16px">Health check: <code>/api/health</code></p>
+  <script src="app.js"></script>
+</body>
+</html>
